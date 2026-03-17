@@ -1,0 +1,1020 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" href="./assets/home/FMLOGO.png" type="image/x-icon">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ابداع 360 - الهيكل الإداري لمحافظة المنيا</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary-blue: #1E88E5;
+      --primary-dark-blue: #1565C0;
+      --golden: #FFD700;
+      --white: #ffffff;
+      --bg-overlay: rgba(30, 136, 229, 0.1);
+      --form-bg: rgba(255, 255, 255, 0.1);
+      --input-bg: rgba(255, 255, 255, 0.795);
+      --input-hover: rgba(255,255,255,0.3);
+      --border-radius: 14px;
+      --card-bg: rgba(0, 0, 0, 0.7);
+      --mobile-breakpoint: 768px;
+      --tablet-breakpoint: 992px;
+      --field-green: #3a9b46;
+      --field-lines: rgba(255, 255, 255, 0.7);
+      --goal-color: #e0e0e0;
+      --goal-net: rgba(0, 0, 0, 0.1);
+      --fm-gold: var(--golden);
+      --fm-blue: var(--primary-blue);
+      --fm-dark: #fff;
+      --section-bg: rgba(0, 0, 0, 0.6);
+      --hr-color: #FF9800;
+      --ait-color: #00BCD4;
+      --pr-color: #9C27B0;
+      --or-color: #4CAF50;
+      --sm-color: var(--primary-blue);
+    }
+    
+    body {
+      margin: 0;
+      font-family: 'Cairo', sans-serif;
+      background: #000000 url('./assets/home/BG.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: var(--text-color);
+      overflow-x: hidden;
+      font-size: 16px;
+      position: relative;
+      min-height: 100vh;
+    }
+    
+    /* شريط التنقل - شفاف تماماً */
+    .nav-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 5%;
+      background: transparent;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      transition: all 0.3s ease;
+    }
+    
+    .logo-section {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      position: relative;
+    }
+    
+    .logo-section img {
+      height: 50px;
+      width: auto;
+      transition: all 0.5s ease;
+      filter: drop-shadow(0 5px 15px rgba(0,0,0,0.2));
+    }
+    
+    .logo-section img:hover {
+      transform: scale(1.15);
+      filter: drop-shadow(0 8px 20px rgba(0, 0, 0, 0.3));
+    }
+    
+    .hashtag {
+      font-size: 1rem;
+      font-weight: bold;
+      color: var(--golden);
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+    }
+    
+    /* شخصية VolunAI التفاعلية */
+    .orino-character {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      z-index: 99;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      animation: orinoFloat 3s ease-in-out infinite;
+    }
+
+    .orino-character img {
+      width: 120px;
+      cursor: pointer;
+      transition: all 0.3s;
+      filter: drop-shadow(0 5px 15px rgba(30,136,229,0.5));
+    }
+
+    .orino-character:hover img {
+      transform: scale(1.1);
+      animation: orinoFloatHover 2s ease-in-out infinite;
+    }
+
+    .orino-tooltip {
+      position: absolute;
+      bottom: 100%;
+      right: 0;
+      background: rgba(0, 0, 0, 0.9);
+      backdrop-filter: blur(10px);
+      color: white;
+      padding: 15px;
+      border-radius: 15px;
+      width: 200px;
+      max-width: 90vw;
+      text-align: center;
+      font-size: 0.9em;
+      line-height: 1.6;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      border: 1px solid var(--primary-blue);
+      z-index: 1000;
+      white-space: normal;
+      word-wrap: break-word;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+      margin-bottom: 10px;
+    }
+
+    .orino-tooltip::after {
+      content: '';
+      position: absolute;
+      top: 100%;
+      right: 20px;
+      border-width: 8px;
+      border-style: solid;
+      border-color: rgba(0, 0, 0, 0.9) transparent transparent transparent;
+    }
+
+    .orino-character.active .orino-tooltip {
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    /* تأثيرات الجزيئات - رموز تكنولوجية */
+    .particles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: -1;
+    }
+    
+    .tech-particle {
+      position: absolute;
+      color: var(--primary-blue);
+      font-size: 1.2rem;
+      font-weight: bold;
+      opacity: 0.3;
+      animation: floatTech linear infinite;
+      user-select: none;
+    }
+    
+    @keyframes floatTech {
+      0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+      10% { opacity: 0.5; }
+      90% { opacity: 0.5; }
+      100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+    }
+    
+    /* محتوى صفحة الهيكل الإداري */
+    .org-page {
+      padding: 40px 5% 60px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .org-header {
+      text-align: center;
+      margin-bottom: 40px;
+      position: relative;
+    }
+    
+    .org-title {
+      font-size: 2.5rem;
+      color: var(--golden);
+      margin-bottom: 10px;
+      position: relative;
+      display: inline-block;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    }
+    
+    .org-title::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 4px;
+      background: var(--primary-blue);
+      border-radius: 2px;
+    }
+    
+    .org-subtitle {
+      font-size: 1.8rem;
+      max-width: 800px;
+      margin: 0 auto;
+      line-height: 1.6;
+      color: var(--white);
+      font-weight: bold;
+    }
+    
+    .org-subtitle span {
+      color: var(--golden);
+    }
+    
+    .org-description {
+      font-size: 1.2rem;
+      max-width: 800px;
+      margin: 20px auto 0;
+      line-height: 1.6;
+      color: var(--white);
+    }
+    
+    /* أقسام الهيكل - بدون إطارات خارجية */
+    .org-section {
+      margin-bottom: 40px;
+      padding: 30px;
+      /* تم إزالة background, border, backdrop-filter */
+    }
+    
+    .section-title {
+      font-size: 2rem;
+      color: var(--golden);
+      margin-bottom: 30px;
+      text-align: center;
+      position: relative;
+      display: block;
+      width: 100%;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    }
+    
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 3px;
+      background: var(--primary-blue);
+      border-radius: 2px;
+    }
+    
+    /* مقدمة VolunAI */
+    .orino-intro {
+      background: rgba(30, 136, 229, 0.15);
+      border-radius: var(--border-radius);
+      padding: 20px;
+      margin-bottom: 30px;
+      border-right: 5px solid var(--primary-blue);
+      font-style: italic;
+      position: relative;
+      overflow: hidden;
+      color: var(--white);
+      text-align: center;
+    }
+    
+    .orino-intro::before {
+      content: '"';
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 3rem;
+      color: rgba(255, 255, 255, 0.1);
+    }
+    
+    /* شبكة الكروت */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 25px;
+    }
+    
+    /* شبكة مخصصة للإدارة العليا - 2 في الصف */
+    .top-management-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 25px;
+      margin-bottom: 30px;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    /* شبكة مخصصة للإدارات الفرعية */
+    .departments-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 25px;
+      margin-top: 20px;
+    }
+    
+    /* شبكة خاصة بقسم OR - عمودين */
+    .two-columns-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 25px;
+      margin-top: 20px;
+    }
+    
+    /* تحسينات كروت الإدارة */
+    .org-card {
+      background: var(--card-bg);
+      border-radius: var(--border-radius);
+      padding: 20px;
+      border: 1px solid var(--primary-blue);
+      transition: all 0.3s;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+      color: var(--white);
+      min-height: 380px;
+      height: 100%;
+      box-sizing: border-box;
+    }
+    
+    .org-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(45deg, transparent, rgba(30, 136, 229, 0.2), transparent);
+      transform: translateX(-100%);
+      transition: 0.6s;
+    }
+    
+    .org-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.4);
+      background: rgba(0, 0, 0, 0.8);
+      border-color: var(--golden);
+    }
+    
+    .org-card:hover::before {
+      transform: translateX(100%);
+    }
+    
+    /* ألوان الأيقونات حسب الإدارة */
+    .card-icon {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      font-size: 1.2rem;
+      transition: all 0.3s;
+      height: 35px;
+      width: 35px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: rgba(0,0,0,0.4);
+      box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+      z-index: 2;
+    }
+    
+    .org-card:hover .card-icon {
+      transform: scale(1.1) rotate(10deg);
+      background: rgba(0, 0, 0, 0.9);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    }
+    
+    .card-icon.hr { color: var(--hr-color); }
+    .card-icon.ait { color: var(--ait-color); }
+    .card-icon.pr { color: var(--pr-color); }
+    .card-icon.or { color: var(--or-color); }
+    .card-icon.sm { color: var(--sm-color); }
+    .card-icon.advisor { color: var(--golden); }
+    .card-icon.head { color: var(--primary-blue); }
+    .card-icon.leader { color: var(--white); }
+    
+    /* تكبير حجم الصور في الكروت */
+    .card-image {
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid var(--primary-blue);
+      margin-bottom: 15px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      transition: all 0.3s;
+      margin-top: 10px;
+    }
+    
+    .org-card:hover .card-image {
+      transform: scale(1.05);
+      border-color: var(--golden);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    }
+    
+    .card-name {
+      font-size: 1.3rem;
+      margin-bottom: 5px;
+      color: var(--golden);
+      font-weight: bold;
+    }
+    
+    .card-name-en {
+      font-size: 0.9rem;
+      margin-bottom: 10px;
+      color: #ccc;
+      font-style: italic;
+    }
+    
+    .card-role {
+      font-size: 1rem;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 5px 15px;
+      border-radius: 20px;
+      margin-top: 10px;
+      color: var(--white);
+      border: 1px solid var(--primary-blue);
+    }
+    
+    /* تذييل الصفحة - سعد المرجاوي */
+    .footer-box {
+      margin-top: 50px;
+      background: var(--card-bg);
+      backdrop-filter: blur(10px);
+      border-radius: var(--border-radius);
+      padding: 25px;
+      border: 2px solid var(--golden);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    
+    .footer-item {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-width: 150px;
+    }
+    
+    .footer-item img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      border: 3px solid var(--primary-blue);
+      transition: transform 0.3s;
+      object-fit: cover;
+    }
+    
+    .footer-item img:hover {
+      transform: scale(1.05);
+      border-color: var(--golden);
+    }
+    
+    .footer-center {
+      flex: 2;
+      text-align: center;
+    }
+    
+    .footer-name {
+      font-size: 1.8rem;
+      color: var(--golden);
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+    
+    .footer-title {
+      font-size: 1.2rem;
+      color: var(--white);
+      line-height: 1.6;
+    }
+    
+    .footer-title span {
+      color: var(--primary-blue);
+      font-weight: bold;
+    }
+    
+    /* تأثيرات الحركة */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .animate-card {
+      animation: fadeInUp 0.6s ease-out forwards;
+      opacity: 0;
+    }
+    
+    @keyframes orinoFloat {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+    }
+
+    @keyframes orinoFloatHover {
+      0%, 100% { transform: translateY(0) scale(1.1); }
+      50% { transform: translateY(-15px) scale(1.1); }
+    }
+    
+    /* تحسينات للهواتف */
+    @media (max-width: 1200px) {
+      .cards-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+    
+    @media (max-width: 900px) {
+      .cards-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      
+      .top-management-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .org-title {
+        font-size: 2rem;
+      }
+      
+      .org-subtitle {
+        font-size: 1.3rem;
+      }
+      
+      .section-title {
+        font-size: 1.6rem;
+      }
+      
+      .cards-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .two-columns-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .footer-box {
+        flex-direction: column;
+        text-align: center;
+      }
+      
+      .footer-box {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+      }
+      .footer-item:first-child {
+        grid-column: 1 / 2;
+        grid-row: 1;
+      }
+      .footer-item:last-child {
+        grid-column: 2 / 3;
+        grid-row: 1;
+      }
+      .footer-center {
+        grid-column: 1 / -1;
+        grid-row: 2;
+      }
+      .footer-item {
+        min-width: auto;
+      }
+      .footer-item img {
+        width: 80px;
+        height: 80px;
+      }
+      .footer-name {
+        font-size: 1.4rem;
+      }
+      .footer-title {
+        font-size: 1rem;
+      }
+      
+      .orino-character {
+        width: 100px;
+        bottom: 20px;
+        right: 20px;
+      }
+      
+      .orino-character img {
+        width: 80px;
+      }
+      
+      .nav-bar {
+        padding: 10px 3%;
+      }
+      
+      .logo-section img {
+        height: 40px;
+      }
+      
+      .logo-section img[alt="شعار محافظة المنيا"] {
+        height: 20px;
+      }
+      
+      .hashtag {
+        font-size: 1rem;
+      }
+      
+      .card-image {
+        width: 120px;
+        height: 120px;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="particles" id="particles"></div>
+
+<!-- شخصية VolunAI التفاعلية -->
+<div class="orino-character" id="orino-character">
+  <div class="orino-tooltip" id="orino-tooltip">
+    مرحباً! أنا VolunAI، مساعدكم الذكي لاستعراض الهيكل الإداري لمشروع ابداع 360 بالمنيا.
+  </div>
+  <img src="./assets/home/volinai.png" alt="VolunAI المساعد الذكي" id="orino-image">
+</div>
+
+<!-- شريط التنقل - شفاف تماماً -->
+<div class="nav-bar">
+  <div class="logo-section">
+    <div class="hashtag">#المستقبل_بالذكاء_الاصطناعي</div>
+  </div>
+  
+  <div class="logo-section">
+    <img src="./assets/home/ebda3.png" alt="شعار ابداع 360">
+    <img src="./assets/home/المنيا.png" alt="شعار محافظة المنيا" style="height: 80px;" onerror="this.src='https://via.placeholder.com/100x100/1E88E5/ffffff?text=Minia'">
+  </div>
+</div>
+
+<!-- محتوى صفحة الهيكل الإداري -->
+<div class="org-page">
+  <!-- المقدمة -->
+  <div class="org-header" data-orino-message="أهلاً بكم في الهيكل الإداري لمشروع ابداع 360 بمحافظة المنيا، حيث نصنع المستقبل بالذكاء الاصطناعي">
+    <h1 class="org-title">الهيكل الإداري لمشروع Ebda3 360</h1>
+    <h2 class="org-subtitle"><span>محافظة المنيا</span></h2>
+    <p class="org-description">نحو مستقبل رقمي بإبداع وذكاء اصطناعي</p>
+  </div>
+  
+  <!-- الإدارة العليا -->
+  <div class="org-section top-section" data-orino-message="الإدارة العليا تقود المشروع برؤية استراتيجية نحو التميز">
+    <h2 class="section-title">الإدارة العليا</h2>
+    
+    <div class="orino-intro">
+      <i class="fas fa-quote-left"></i> 
+      القيادة الحكيمة هي أساس النجاح. مستشار المحافظة ومنسق المشروع يضعان الأسس المتينة لانطلاقتنا.
+    </div>
+    
+    <div class="top-management-grid">
+      <!-- عمرو إسماعيل أبو بكر - مستشار المحافظة -->
+      <div class="org-card animate-card" style="animation-delay: 0.1s" 
+           data-orino-message="عمرو إسماعيل أبو بكر، مستشار المحافظة، يقدم الدعم الاستراتيجي والتوجيه للمشروع">
+        <div class="card-icon advisor">
+          <i class="fas fa-user-tie"></i>
+        </div>
+        <img src="./assets/home/amr.jpeg" alt="عمرو إسماعيل أبو بكر" class="card-image" onerror="this.src='https://via.placeholder.com/160x160/1E88E5/ffffff?text=Amr'">
+        <h3 class="card-name">عمرو إسماعيل أبو بكر</h3>
+        <div class="card-name-en">Amr Ismail Abou Bakr</div>
+        <div class="card-role">مستشار المحافظة</div>
+      </div>
+      
+      <!-- شاميه عبد الحميد فهمي - منسق المحافظة -->
+      <div class="org-card animate-card" style="animation-delay: 0.2s" 
+           data-orino-message="شاميه عبد الحميد فهمي، منسق المحافظة، تتابع تنفيذ المشروع وتضمن التكامل بين الفرق">
+        <div class="card-icon advisor">
+          <i class="fas fa-users"></i>
+        </div>
+        <img src="./assets/home/shamia.jpeg" alt="شاميه عبد الحميد فهمي" class="card-image" onerror="this.src='https://via.placeholder.com/160x160/1E88E5/ffffff?text=Shamia'">
+        <h3 class="card-name">شاميه عبد الحميد فهمي</h3>
+        <div class="card-name-en">Shamia Abdelhamid Fahmy</div>
+        <div class="card-role">منسق المحافظة</div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- الإدارات الفرعية -->
+  
+  <!-- إدارة الموارد البشرية HR -->
+  <div class="org-section hr-section" data-orino-message="إدارة الموارد البشرية تبني خطط تطوير الكوادر">
+    <h2 class="section-title">الموارد البشرية HR</h2>
+    <div class="orino-intro">
+      <i class="fas fa-quote-left"></i>
+      الموارد البشرية هي القلب النابض للمشروع، تبني الكوادر وتطور الأداء.
+    </div>
+    <div class="departments-grid">
+      <div class="org-card animate-card" data-orino-message="شيماء نور الدين مصطفى، المسؤولة الاستراتيجية للموارد البشرية">
+        <div class="card-icon hr">
+          <i class="fas fa-users-cog"></i>
+        </div>
+        <img src="./assets/home/shaymaa.jpeg" alt="شيماء نور الدين مصطفى" class="card-image" onerror="this.src='https://via.placeholder.com/160x160/FF9800/ffffff?text=Sheima'">
+        <h3 class="card-name">شيماء نور الدين مصطفى</h3>
+        <div class="card-name-en">Sheima Nour Eldin Mostafa</div>
+        <div class="card-role">Strategic HR Lead</div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- إدارة التحول الرقمي AIT -->
+  <div class="org-section ait-section" data-orino-message="إدارة التحول الرقمي تقود مشاريع الذكاء الاصطناعي">
+    <h2 class="section-title"> وحدة تحول الذكاء الاصطناعي AIT</h2>
+    <div class="orino-intro">
+      <i class="fas fa-quote-left"></i>
+      التحول الرقمي يقود مستقبل الابتكار بتقنيات الذكاء الاصطناعي.
+    </div>
+    <div class="departments-grid">
+      <div class="org-card animate-card" data-orino-message="عبد الرازق محمد خلف، ادفايزر التحول الرقمي">
+        <div class="card-icon ait">
+          <i class="fas fa-microchip"></i>
+        </div>
+        <img src="./assets/home/abdelrazek.jpeg" alt="عبد الرازق محمد خلف" class="card-image" onerror="this.src='https://via.placeholder.com/160x160/00BCD4/ffffff?text=Abdelrazek'">
+        <h3 class="card-name">عبد الرازق محمد خلف</h3>
+        <div class="card-name-en">Abdelrazek Mohamed Khalaf</div>
+        <div class="card-role">AIT Advisor</div>
+      </div>
+      
+      <div class="org-card animate-card" data-orino-message="هاجر محمد هنداوي، هيد AIT">
+        <div class="card-icon ait">
+          <i class="fas fa-robot"></i>
+        </div>
+        <img src="./assets/home/hager.jpeg" alt="هاجر محمد هنداوي" class="card-image" onerror="this.src='https://via.placeholder.com/160x160/00BCD4/ffffff?text=Hager'">
+        <h3 class="card-name">هاجر محمد هنداوي</h3>
+        <div class="card-name-en">Hager Mohamed Hendawy</div>
+        <div class="card-role">AIT Head</div>
+      </div>
+      
+      <div class="org-card animate-card" data-orino-message="الاء جمعة رمضان، ليدر فرعي AIT">
+        <div class="card-icon ait">
+          <i class="fas fa-code"></i>
+        </div>
+        <img src="./assets/home/alaa.jpeg" alt="الاء جمعة رمضان" class="card-image" onerror="this.src='https://via.placeholder.com/160x160/00BCD4/ffffff?text=Alaa'">
+        <h3 class="card-name">الاء جمعة رمضان</h3>
+        <div class="card-name-en">Alaa Gomaa Ramadan</div>
+        <div class="card-role">AIT Sub-Leader</div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- إدارة العلاقات العامة PR -->
+  <div class="org-section pr-section" data-orino-message="إدارة العلاقات العامة تبني جسور التواصل">
+    <h2 class="section-title">العلاقات العامة PR</h2>
+    <div class="orino-intro">
+      <i class="fas fa-quote-left"></i>
+      العلاقات العامة تبني جسور الثقة وتعزز التواصل الفعّال.
+    </div>
+    <div class="departments-grid">
+      <div class="org-card animate-card" data-orino-message="زياد ربيعي جلال، ادفايزر علاقات عامة">
+        <div class="card-icon pr">
+          <i class="fas fa-handshake"></i>
+        </div>
+        <img src="./assets/home/ziad.jpeg" alt="زياد ربيعي جلال" class="card-image" onerror="this.src='https://via.placeholder.com/160x160/9C27B0/ffffff?text=Ziad'">
+        <h3 class="card-name">زياد ربيعي جلال</h3>
+        <div class="card-name-en">Ziad Rabie Galal</div>
+        <div class="card-role">PR Advisor</div>
+      </div>
+      
+      <div class="org-card animate-card" data-orino-message="أحمد عيد محمد، هيد علاقات عامة">
+        <div class="card-icon pr">
+          <i class="fas fa-bullhorn"></i>
+        </div>
+        <img src="./assets/home/ahmed eid.jpeg" alt="أحمد عيد محمد" class="card-image" onerror="this.src='https://via.placeholder.com/160x160/9C27B0/ffffff?text=Ahmed'">
+        <h3 class="card-name">أحمد عيد محمد</h3>
+        <div class="card-name-en">Ahmed Eid Mohamed</div>
+        <div class="card-role">PR Head</div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- إدارة التنظيم والفاعليات OR -->
+  <div class="org-section or-section" data-orino-message="إدارة التنظيم والفاعليات تشرف على الفعاليات">
+    <h2 class="section-title">التنظيم والفاعليات OR</h2>
+    <div class="orino-intro">
+      <i class="fas fa-quote-left"></i>
+      التنظيم الدقيق وإدارة الفعاليات هما مفتاح النجاح.
+    </div>
+    <div class="two-columns-grid">
+      <!-- نورهان شعبان محمد -->
+      <div class="org-card animate-card" data-orino-message="نورهان شعبان محمد، ادفايزر OR">
+        <div class="card-icon or">
+          <i class="fas fa-calendar-alt"></i>
+        </div>
+        <img src="./assets/home/norhan.jpeg" alt="نورهان شعبان محمد" class="card-image" onerror="this.src='https://via.placeholder.com/160x160/4CAF50/ffffff?text=Nourhan'">
+        <h3 class="card-name">نورهان شعبان محمد</h3>
+        <div class="card-name-en">Nourhan Shaaban Mohamed</div>
+        <div class="card-role">OR Advisor</div>
+      </div>
+      
+      <!-- محمد مهدي أنور -->
+      <div class="org-card animate-card" data-orino-message="محمد مهدي أنور، هيد OR">
+        <div class="card-icon or">
+          <i class="fas fa-tasks"></i>
+        </div>
+        <img src="./assets/home/mohammed mahdy.jpeg" alt="محمد مهدي أنور" class="card-image" onerror="this.src='https://via.placeholder.com/160x160/4CAF50/ffffff?text=Mohamed'">
+        <h3 class="card-name">محمد مهدي أنور</h3>
+        <div class="card-name-en">Mohamed Mahdi Anwar</div>
+        <div class="card-role">OR Head</div>
+      </div>
+      
+      <!-- خلود جمال فرغل -->
+      <div class="org-card animate-card" data-orino-message="خلود جمال فرغل، ليدر فرعي OR">
+        <div class="card-icon or">
+          <i class="fas fa-clipboard-list"></i>
+        </div>
+        <img src="./assets/home/kholoud.jpeg" alt="خلود جمال فرغل" class="card-image" onerror="this.src='https://via.placeholder.com/160x160/4CAF50/ffffff?text=Khloud'">
+        <h3 class="card-name">خلود جمال فرغل</h3>
+        <div class="card-name-en">Khloud Gamal Farghal</div>
+        <div class="card-role">OR Sub-Leader</div>
+      </div>
+      
+      <!-- لمياء حشمت رشاد -->
+      <div class="org-card animate-card" data-orino-message="لمياء حشمت رشاد، ليدر فرعي OR">
+        <div class="card-icon or">
+          <i class="fas fa-check-double"></i>
+        </div>
+        <img src="./assets/home/hijab.png" alt="لمياء حشمت رشاد" class="card-image" onerror="this.src='https://via.placeholder.com/160x160/4CAF50/ffffff?text=Lamia'">
+        <h3 class="card-name">لمياء حشمت رشاد</h3>
+        <div class="card-name-en">Lamia Heshmat Rashad</div>
+        <div class="card-role">OR Sub-Leader</div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- إدارة السوشيال ميديا SM - تم إضافة كارد نورا عاطف محمد -->
+  <div class="org-section sm-section" data-orino-message="إدارة السوشيال ميديا بقيادة غاده رمضان وهاجر عاشور ونورا عاطف">
+    <h2 class="section-title">السوشيال ميديا SM</h2>
+    <div class="orino-intro">
+      <i class="fas fa-quote-left"></i>
+      السوشيال ميديا تنشر رسالتنا وتواصل مع المجتمع.
+    </div>
+    <div class="departments-grid">
+      <!-- غاده رمضان رشاد (SM Advisor) -->
+      <div class="org-card animate-card" data-orino-message="غاده رمضان رشاد، ادفايزر السوشيال ميديا">
+        <div class="card-icon sm">
+          <i class="fas fa-hashtag"></i>
+        </div>
+        <img src="./assets/home/ghada.jpeg" alt="غاده رمضان رشاد" class="card-image" onerror="this.src='https://via.placeholder.com/160x160/1E88E5/ffffff?text=Ghada'">
+        <h3 class="card-name">غاده رمضان رشاد</h3>
+        <div class="card-name-en">Ghada Ramadan Rashad</div>
+        <div class="card-role">SM Advisor</div>
+      </div>
+      
+      <!-- هاجر عاشور رشاد (SM Head) -->
+      <div class="org-card animate-card" data-orino-message="هاجر عاشور رشاد، رئيسة السوشيال ميديا">
+        <div class="card-icon sm">
+          <i class="fas fa-share-alt"></i>
+        </div>
+        <img src="./assets/home/hijab2.png" alt="هاجر عاشور رشاد" class="card-image" onerror="this.src='https://via.placeholder.com/160x160/1E88E5/ffffff?text=Hager+Ashour'">
+        <h3 class="card-name">هاجر عاشور رشاد</h3>
+        <div class="card-name-en">Hager Ashour Rashad</div>
+        <div class="card-role">SM Head</div>
+      </div>
+
+      <!-- نورا عاطف محمد (SM Sub-Leader) - كارد جديد -->
+      <div class="org-card animate-card" data-orino-message="نورا عاطف محمد، ليدر فرعي للسوشيال ميديا">
+        <div class="card-icon sm">
+          <i class="fas fa-share-alt-square"></i>
+        </div>
+        <img src="./assets/home/hijab3.jpg" alt="نورا عاطف محمد" class="card-image" onerror="this.src='https://via.placeholder.com/160x160/1E88E5/ffffff?text=Noura'">
+        <h3 class="card-name">نورا عاطف محمد</h3>
+        <div class="card-name-en">Noura Atef Mohamed</div>
+        <div class="card-role">SM Sub-Leader</div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- تذييل الصفحة - سعد المرجاوي -->
+  <div class="footer-box">
+    <div class="footer-item">
+      <img src="./assets/home/سعد-شكري-سعد.jpg" alt="سعد المرجاوي" onerror="this.src='https://via.placeholder.com/100x100/1E88E5/ffffff?text=Saad'">
+    </div>
+    <div class="footer-center">
+      <div class="footer-name">سعد شكري المرجاوي</div>
+      <div class="footer-title">رئيس إدارة تحول الذكاء الاصطناعي المركزي <br> <span>وعضو الإدارة التنفيذية بمشروع ابداع 360 بالجمهورية</span></div>
+    </div>
+    <div class="footer-item">
+      <img src="./assets/home/AIT-1.png" alt="شعار لجنة تحول الذكاء الاصطناعي" onerror="this.src='https://via.placeholder.com/100x100/FFD700/000000?text=AI'">
+    </div>
+  </div>
+</div>
+
+<script>
+  // تهيئة الصفحة
+  document.addEventListener('DOMContentLoaded', function() {
+    createParticles();
+    setupOrinoCharacter();
+    setupScrollAnimations();
+    setupOrinoInteractions();
+  });
+
+  // إنشاء الجزيئات التكنولوجية
+  function createParticles() {
+    const particlesContainer = document.getElementById('particles');
+    const symbols = ['{ }', '</>', '[ ]', '()', 'AI', '360', '#', '{}', '<>', '[]', '&&', '||', '=>', '<=', '!=', '==='];
+    const count = 30;
+    
+    for (let i = 0; i < count; i++) {
+      const particle = document.createElement('div');
+      particle.classList.add('tech-particle');
+      
+      const randomSymbol = symbols[Math.floor(Math.random() * symbols.length)];
+      const size = Math.random() * 1 + 0.8;
+      const posX = Math.random() * window.innerWidth;
+      const duration = Math.random() * 15 + 10;
+      const delay = Math.random() * 10;
+      
+      particle.style.fontSize = `${size}rem`;
+      particle.style.left = `${posX}px`;
+      particle.style.bottom = '0';
+      particle.style.animationDuration = `${duration}s`;
+      particle.style.animationDelay = `${delay}s`;
+      particle.textContent = randomSymbol;
+      
+      particlesContainer.appendChild(particle);
+    }
+  }
+  
+  // إعداد شخصية VolunAI التفاعلية
+  function setupOrinoCharacter() {
+    const orinoCharacter = document.getElementById('orino-character');
+    const orinoTooltip = document.getElementById('orino-tooltip');
+    
+    setTimeout(() => {
+      orinoTooltip.textContent = 'مرحباً! أنا VolunAI، دليلكم الذكي لاستكشاف الهيكل الإداري لمشروع ابداع 360.';
+      orinoCharacter.classList.add('active');
+      
+      setTimeout(() => {
+        orinoCharacter.classList.remove('active');
+      }, 8000);
+    }, 1500);
+    
+    orinoCharacter.addEventListener('click', function() {
+      const messages = [
+        'فريق ابداع 360 بالمنيا يسخر الذكاء الاصطناعي لخدمة المجتمع.',
+        'الإدارات الفرعية تعمل بتكامل لتحقيق رؤية المشروع.',
+        'نحن نبني مستقبل رقمي مبدع بالمحافظة.',
+        'الذكاء الاصطناعي هو جوهر تحولنا الرقمي.'
+      ];
+      
+      const randomMessage = messages[Math.floor(Math.random() * messages.length)];
+      orinoTooltip.textContent = randomMessage;
+      
+      orinoCharacter.classList.add('active');
+      
+      setTimeout(() => {
+        orinoCharacter.classList.remove('active');
+      }, 6000);
+    });
+  }
+  
+  // تفعيل تأثيرات الظهور عند التمرير
+  function setupScrollAnimations() {
+    const animatedElements = document.querySelectorAll('.animate-card');
+    
+    function checkScroll() {
+      animatedElements.forEach(element => {
+        const elementPosition = element.getBoundingClientRect().top;
+        const screenPosition = window.innerHeight / 1.3;
+        
+        if (elementPosition < screenPosition) {
+          element.style.opacity = 1;
+        }
+      });
+    }
+    
+    window.addEventListener('load', checkScroll);
+    window.addEventListener('scroll', checkScroll);
+  }
+  
+  // إعداد تفاعل VolunAI مع عناصر الصفحة
+  function setupOrinoInteractions() {
+    const orinoCharacter = document.getElementById('orino-character');
+    const orinoTooltip = document.getElementById('orino-tooltip');
+    
+    const interactiveElements = document.querySelectorAll('[data-orino-message]');
+    let timeoutId;
+    
+    interactiveElements.forEach(element => {
+      element.addEventListener('mouseenter', function() {
+        clearTimeout(timeoutId);
+        orinoTooltip.textContent = this.getAttribute('data-orino-message');
+        orinoCharacter.classList.add('active');
+      });
+      
+      element.addEventListener('mouseleave', function() {
+        timeoutId = setTimeout(() => {
+          orinoCharacter.classList.remove('active');
+        }, 1000);
+      });
+    });
+  }
+</script>
+</body>
+</html>
